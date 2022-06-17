@@ -1,16 +1,18 @@
+import { Routes, Route } from 'react-router';
+import { Container } from './BaseStyles.styled';
+import { Layout } from './Layout/Layout';
+import { Home } from '../pages/Home/Home';
+import { AboutUs } from '../pages/AboutUs/AboutUs';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Container>
+      <Routes>
+        <Route path={'/'} element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path={'about-us'} element={<AboutUs />} />
+        </Route>
+      </Routes>
+    </Container>
   );
 };
