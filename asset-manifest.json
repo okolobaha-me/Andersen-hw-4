@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Andersen-hw-4/static/css/main.7acaea2f.css",
+    "main.js": "/Andersen-hw-4/static/js/main.07d3183d.js",
+    "index.html": "/Andersen-hw-4/index.html",
+    "main.7acaea2f.css.map": "/Andersen-hw-4/static/css/main.7acaea2f.css.map",
+    "main.07d3183d.js.map": "/Andersen-hw-4/static/js/main.07d3183d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.07d3183d.js"
+  ]
+}
