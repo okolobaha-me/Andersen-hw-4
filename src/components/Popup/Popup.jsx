@@ -11,7 +11,7 @@ export const Popup = ({ message, closePopup }) => {
     return () => {
       clearTimeout(timer);
     };
-  }, []);
+  }, [closePopup]);
 
   return createPortal(
     <PopupStyled>

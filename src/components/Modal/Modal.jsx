@@ -10,7 +10,7 @@ export const Modal = ({ content, closeModal }) => {
     e.stopPropagation();
   };
 
-  const onEscClos = e => {
+  const onEscClose = e => {
     if (e.key !== 'Escape') return;
 
     closeModal();
@@ -21,11 +21,11 @@ export const Modal = ({ content, closeModal }) => {
     if (isFirstLoad.current) return;
     isFirstLoad.current = false;
 
-    window.addEventListener('keydown', onEscClos);
+    window.addEventListener('keydown', onEscClose);
     return () => {
-      window.removeEventListener('keydown', onEscClos);
+      window.removeEventListener('keydown', onEscClose);
     };
-  }, []);
+  }, [onEscClose]);
 
   return createPortal(
     <Backdrop closeModal={closeModal}>

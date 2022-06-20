@@ -97,7 +97,7 @@ export const App = () => {
     if (!token) return;
     tokenOptions.set(token);
     getUserData().then(setUserData);
-  }, []);
+  }, [setUserData]);
 
   return (
     <>
