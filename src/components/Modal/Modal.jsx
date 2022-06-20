@@ -2,7 +2,7 @@ import { Backdrop } from '../Backdrop/Backdrop';
 import { createPortal } from 'react-dom';
 import { ModalBlock } from './Modal.styled';
 import PropTypes from 'prop-types';
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 export const Modal = ({ content, closeModal }) => {
   const modalRoot = document.getElementById('ModalRoot');
@@ -10,15 +10,16 @@ export const Modal = ({ content, closeModal }) => {
     e.stopPropagation();
   };
 
-  const onEscClose = e => {
+  const onEscClose = useCallback(e => {
     if (e.key !== 'Escape') return;
 
     closeModal();
-  };
+  }, []);
 
   const isFirstLoad = useRef(true);
+
   useEffect(() => {
-    if (isFirstLoad.current) return;
+    if (!isFirstLoad.current) return;
     isFirstLoad.current = false;
 
     window.addEventListener('keydown', onEscClose);

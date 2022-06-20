@@ -3,7 +3,7 @@ import { Container } from './BaseStyles.styled';
 import { Layout } from './Layout/Layout';
 import { Home } from '../pages/Home/Home';
 import { AboutUs } from '../pages/AboutUs/AboutUs';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Modal } from './Modal/Modal';
 import { LoginForm } from './Forms/LoginForm/LoginForm';
 import { RegistrationForm } from './Forms/RegistrationForm/RegistrationForm';
@@ -30,13 +30,13 @@ export const App = () => {
   const [userName, setUserName] = useState('');
   const [avatar, setAvatar] = useState('');
 
-  const setUserData = res => {
+  const setUserData = useCallback(res => {
     const { name, avatar } = res;
     setUserName(name);
     setAvatar(avatar);
     setIsLoggedIn(true);
     closeModal();
-  };
+  }, []);
 
   const logIn = async (email, password) => {
     await auth(email, password)
@@ -71,10 +71,10 @@ export const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setIsModalOpen(false);
     setModalContent(null);
-  };
+  }, []);
 
   const openModal = async type => {
     const modalContent =
