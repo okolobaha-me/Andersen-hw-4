@@ -32,7 +32,7 @@ export const AboutProduct = ({ addToCart, isLoggedIn }) => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [productId]);
 
   const {
     id = '',
