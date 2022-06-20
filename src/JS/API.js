@@ -17,7 +17,6 @@ export const tokenOptions = {
 };
 
 export const register = ({ name, email, password }) => {
-  console.log(name, email, password);
   return axios
     .post('/users', {
       name,
@@ -40,4 +39,12 @@ export const auth = async (email, password) => {
 
 export const getUserData = async () => {
   return await axios.get('/auth/profile').then(r => r.data);
+};
+
+export const getProducts = () => {
+  return axios.get('/products?offset=0&limit=20').then(res => res.data);
+};
+
+export const getProductDetails = id => {
+  return axios.get(`products/${id}`).then(res => res.data);
 };

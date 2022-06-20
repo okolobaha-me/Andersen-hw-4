@@ -2,7 +2,7 @@ import { Field } from '../Field/Field';
 import { Button } from '../../Button/Button';
 import { Form } from '../Form.Styled';
 import PropTypes from 'prop-types';
-import { useForm } from '../../hooks/useForm';
+import { useForm } from '../../../hooks/useForm';
 
 export const RegistrationForm = ({ onSubmit }) => {
   const { values, handleChange, isSubmitting, setIsSubmitting } = useForm();

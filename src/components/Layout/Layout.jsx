@@ -9,6 +9,7 @@ export const Layout = ({
   userName,
   avatar,
   openModal,
+  cart,
 }) => {
   return (
     <>
@@ -19,6 +20,7 @@ export const Layout = ({
         userName={userName}
         avatar={avatar}
         openModal={openModal}
+        cart={cart}
       />
       <Outlet />
     </>
@@ -27,6 +29,7 @@ export const Layout = ({
 
 Layout.propTypes = {
   avatar: PropTypes.string.isRequired,
+  cart: PropTypes.object.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
   logIn: PropTypes.func.isRequired,
   logOut: PropTypes.func.isRequired,

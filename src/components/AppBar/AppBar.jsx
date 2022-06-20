@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import { UserMenu } from '../UserMenu/UserMenu';
 import { LogInMenu } from '../LogInMenu/LogInMenu';
 
-export const AppBar = ({ isLoggedIn, logOut, avatar, userName, openModal }) => {
+export const AppBar = ({
+  isLoggedIn,
+  logOut,
+  avatar,
+  userName,
+  openModal,
+  cart,
+}) => {
   return (
     <Header>
       <Nav>
@@ -21,6 +28,7 @@ export const AppBar = ({ isLoggedIn, logOut, avatar, userName, openModal }) => {
           avatar={avatar}
           userName={userName}
           openModal={openModal}
+          cart={cart}
         />
       ) : (
         <LogInMenu openModal={openModal} />
@@ -31,6 +39,7 @@ export const AppBar = ({ isLoggedIn, logOut, avatar, userName, openModal }) => {
 
 AppBar.propTypes = {
   avatar: PropTypes.string.isRequired,
+  cart: PropTypes.object.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
   logIn: PropTypes.func.isRequired,
   logOut: PropTypes.func.isRequired,
