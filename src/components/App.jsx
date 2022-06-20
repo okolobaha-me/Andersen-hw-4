@@ -25,18 +25,43 @@ export const App = () => {
     setIsPopupOpen(true);
   };
 
+  //modal logic
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
+
+  const closeModal = useCallback(() => {
+    setIsModalOpen(false);
+    setModalContent(null);
+  }, []);
+
+  const openModal = async type => {
+    const modalContent =
+      type === 'logIn' ? (
+        <LoginForm onSubmit={logIn} />
+      ) : (
+        <RegistrationForm onSubmit={registerUser} />
+      );
+    await setModalContent(modalContent);
+    setIsModalOpen(true);
+  };
+
+  const firstLoad = useRef(true);
+
   //user logic
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
   const [avatar, setAvatar] = useState('');
 
-  const setUserData = useCallback(res => {
-    const { name, avatar } = res;
-    setUserName(name);
-    setAvatar(avatar);
-    setIsLoggedIn(true);
-    closeModal();
-  }, []);
+  const setUserData = useCallback(
+    res => {
+      const { name, avatar } = res;
+      setUserName(name);
+      setAvatar(avatar);
+      setIsLoggedIn(true);
+      closeModal();
+    },
+    [closeModal]
+  );
 
   const logIn = async (email, password) => {
     await auth(email, password)
@@ -66,28 +91,6 @@ export const App = () => {
         openPopup(errMessage);
       });
   };
-
-  //modal logic
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState(null);
-
-  const closeModal = useCallback(() => {
-    setIsModalOpen(false);
-    setModalContent(null);
-  }, []);
-
-  const openModal = async type => {
-    const modalContent =
-      type === 'logIn' ? (
-        <LoginForm onSubmit={logIn} />
-      ) : (
-        <RegistrationForm onSubmit={registerUser} />
-      );
-    await setModalContent(modalContent);
-    setIsModalOpen(true);
-  };
-
-  const firstLoad = useRef(true);
 
   useEffect(() => {
     if (!firstLoad.current) return;

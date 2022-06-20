@@ -10,11 +10,14 @@ export const Modal = ({ content, closeModal }) => {
     e.stopPropagation();
   };
 
-  const onEscClose = useCallback(e => {
-    if (e.key !== 'Escape') return;
+  const onEscClose = useCallback(
+    e => {
+      if (e.key !== 'Escape') return;
 
-    closeModal();
-  }, []);
+      closeModal();
+    },
+    [closeModal]
+  );
 
   const isFirstLoad = useRef(true);
 
