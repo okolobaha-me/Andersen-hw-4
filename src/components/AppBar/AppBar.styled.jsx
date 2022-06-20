@@ -3,6 +3,10 @@ import { NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
   border-bottom: 1px solid #000039;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
 `;
 
 export const Nav = styled.ul`

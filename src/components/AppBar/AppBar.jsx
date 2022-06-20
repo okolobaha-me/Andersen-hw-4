@@ -1,7 +1,9 @@
 import { Header, Nav, NavigationLink, NavItem } from './AppBar.styled';
-import { logIn } from '../../JS/API';
+import PropTypes from 'prop-types';
+import { UserMenu } from '../UserMenu/UserMenu';
+import { LogInMenu } from '../LogInMenu/LogInMenu';
 
-export const AppBar = () => {
+export const AppBar = ({ isLoggedIn, logOut, avatar, userName, openModal }) => {
   return (
     <Header>
       <Nav>
@@ -13,7 +15,25 @@ export const AppBar = () => {
         </NavItem>
       </Nav>
 
-      <button onClick={logIn}>click</button>
+      {isLoggedIn ? (
+        <UserMenu
+          logOut={logOut}
+          avatar={avatar}
+          userName={userName}
+          openModal={openModal}
+        />
+      ) : (
+        <LogInMenu openModal={openModal} />
+      )}
     </Header>
   );
+};
+
+AppBar.propTypes = {
+  avatar: PropTypes.string.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  logIn: PropTypes.func.isRequired,
+  logOut: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
+  userName: PropTypes.string.isRequired,
 };
