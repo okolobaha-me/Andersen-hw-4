@@ -3,5 +3,9 @@ import styled from '@emotion/styled';
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
+`;
+
+export const FormOptions = styled.div`
+  display: flex;
+  gap: 10px;
 `;

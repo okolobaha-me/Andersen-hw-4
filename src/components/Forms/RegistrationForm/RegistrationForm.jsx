@@ -1,10 +1,10 @@
 import { Field } from '../Field/Field';
 import { Button } from '../../Button/Button';
-import { Form } from '../Form.Styled';
+import { Form, FormOptions } from '../Form.Styled';
 import PropTypes from 'prop-types';
 import { useForm } from '../../../hooks/useForm';
 
-export const RegistrationForm = ({ onSubmit }) => {
+export const RegistrationForm = ({ onSubmit, closeModal }) => {
   const { values, handleChange, isSubmitting, setIsSubmitting } = useForm();
   const { email, password, name } = values;
 
@@ -41,16 +41,25 @@ export const RegistrationForm = ({ onSubmit }) => {
         type={'password'}
       />
 
-      <Button
-        type={'submit'}
-        text={'Sign up'}
-        onClick={handleSubmit}
-        isDisabled={isSubmitting}
-      />
+      <FormOptions>
+        <Button
+          type={'submit'}
+          text={'Sign up'}
+          onClick={handleSubmit}
+          isDisabled={isSubmitting}
+        />
+        <Button
+          type={'button'}
+          text={'Cansel'}
+          onClick={closeModal}
+          isDisabled={isSubmitting}
+        />
+      </FormOptions>
     </Form>
   );
 };
 
 RegistrationForm.propTypes = {
+  closeModal: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

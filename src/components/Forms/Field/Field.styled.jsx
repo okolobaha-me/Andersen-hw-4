@@ -17,6 +17,7 @@ export const Input = styled.input`
   padding: 12px;
   resize: none;
   margin-bottom: 10px;
+  margin-right: 0;
 
   :focus {
     outline: rgb(0, 114, 229) solid 3px;

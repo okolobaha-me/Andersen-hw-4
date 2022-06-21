@@ -7,6 +7,7 @@ import { Modal } from './Modal/Modal';
 import { Popup } from './Popup/Popup';
 import { useApp } from '../hooks/useApp';
 import { AboutProduct } from '../pages/AboutProduct/AboutProduct';
+import { NotFount } from '../pages/NotFound/NotFount';
 
 export const App = () => {
   const {
@@ -55,6 +56,7 @@ export const App = () => {
                 <AboutProduct addToCart={addToCart} isLoggedIn={isLoggedIn} />
               }
             />
+            <Route path={'*'} element={<NotFount />} />
           </Route>
         </Routes>
       </Container>

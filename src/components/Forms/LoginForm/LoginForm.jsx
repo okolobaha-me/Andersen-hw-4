@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import { Field } from '../Field/Field';
 import { useForm } from '../../../hooks/useForm';
 import { Button } from '../../Button/Button';
-import { Form } from '../Form.Styled';
+import { Form, FormOptions } from '../Form.Styled';
 
-export const LoginForm = ({ onSubmit }) => {
+export const LoginForm = ({ onSubmit, closeModal }) => {
   const { values, handleChange, isSubmitting, setIsSubmitting } = useForm();
   const { email, password } = values;
 
@@ -34,16 +34,25 @@ export const LoginForm = ({ onSubmit }) => {
         type={'password'}
       />
 
-      <Button
-        type={'submit'}
-        text={'Log in'}
-        onClick={handleSubmit}
-        isDisabled={isSubmitting}
-      />
+      <FormOptions>
+        <Button
+          type={'submit'}
+          text={'Log in'}
+          onClick={handleSubmit}
+          isDisabled={isSubmitting}
+        />
+        <Button
+          type={'button'}
+          text={'Cansel'}
+          onClick={closeModal}
+          isDisabled={isSubmitting}
+        />
+      </FormOptions>
     </Form>
   );
 };
 
 LoginForm.propTypes = {
+  closeModal: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

@@ -4,9 +4,12 @@ import {
   Dollar,
   Image,
   ProductDataWrapper,
+  TempImage,
   Title,
 } from './ProductCard.styled';
 import { Button } from '../Button/Button';
+import photo from '../../images/tempPhoto.png';
+import { useState } from 'react';
 
 export const ProductCard = ({
   id,
@@ -16,13 +19,22 @@ export const ProductCard = ({
   isLoggedIn,
   addToCart,
 }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const handleAdd = () => {
     addToCart(id, price);
   };
 
   return (
     <Card>
-      <Image src={img} alt={title} />
+      {isLoading && <TempImage src={photo} alt={'temporary photo'} />}
+      <Image
+        src={img}
+        alt={title}
+        isLoading={isLoading}
+        onLoad={() => {
+          setIsLoading(false);
+        }}
+      />
       <ProductDataWrapper>
         <Title to={`product/${id}`}>{title}</Title>
         <p>

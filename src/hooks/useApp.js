@@ -11,49 +11,26 @@ export const useApp = () => {
     window.localStorage.setItem(`cart user ${userId}`, JSON.stringify(cart));
   };
 
-  const addToCart = (productId, price) => {
+  const addToCart = (productId, price, addQuantity = 1) => {
     let newCart;
 
     if (cart[productId]) {
       newCart = {
         ...cart,
         [productId]: {
-          quantity: cart[productId].quantity + 1,
+          quantity: cart[productId].quantity + addQuantity,
           price,
         },
       };
     } else {
       newCart = {
         ...cart,
-        [productId]: { quantity: 1, price },
+        [productId]: { quantity: addQuantity, price },
       };
     }
 
     setCart(newCart);
     saveCartToStorage(newCart);
-
-    // if (cart[productId]) {
-    //   setCart(prevState => {
-    //     const newCart = {
-    //       ...prevState,
-    //       [productId]: {
-    //         quantity: prevState[productId].quantity + 1,
-    //         price,
-    //       },
-    //     };
-    //     saveCartToStorage(newCart);
-    //     return newCart;
-    //   });
-    // } else {
-    //   setCart(prevState => {
-    //     const newCart = {
-    //       ...prevState,
-    //       [productId]: { quantity: 1, price },
-    //     };
-    //     saveCartToStorage(newCart);
-    //     return cart;
-    //   });
-    // }
   };
 
   const getCartFromStorage = userId => {
@@ -88,9 +65,9 @@ export const useApp = () => {
   const openModal = async type => {
     const modalContent =
       type === 'logIn' ? (
-        <LoginForm onSubmit={logIn} />
+        <LoginForm onSubmit={logIn} closeModal={closeModal} />
       ) : (
-        <RegistrationForm onSubmit={registerUser} />
+        <RegistrationForm onSubmit={registerUser} closeModal={closeModal} />
       );
     await setModalContent(modalContent);
     setIsModalOpen(true);

@@ -1,8 +1,9 @@
 import { Backdrop } from '../Backdrop/Backdrop';
 import { createPortal } from 'react-dom';
-import { ModalBlock } from './Modal.styled';
+import { CloseBtn, CloseImg, ModalBlock } from './Modal.styled';
 import PropTypes from 'prop-types';
 import { useCallback, useEffect, useRef } from 'react';
+import close from '../../images/close.png';
 
 export const Modal = ({ content, closeModal }) => {
   const modalRoot = document.getElementById('ModalRoot');
@@ -33,7 +34,12 @@ export const Modal = ({ content, closeModal }) => {
 
   return createPortal(
     <Backdrop closeModal={closeModal}>
-      <ModalBlock onClick={stopPropagation}>{content}</ModalBlock>
+      <ModalBlock onClick={stopPropagation}>
+        {content}
+        <CloseBtn onClick={closeModal}>
+          <CloseImg src={close} alt={close} />
+        </CloseBtn>
+      </ModalBlock>
     </Backdrop>,
     modalRoot
   );

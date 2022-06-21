@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import { css } from '@emotion/react';
 
 export const Card = styled.li`
   overflow: hidden;
@@ -9,7 +10,18 @@ export const Card = styled.li`
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.49);
 `;
 
+export const TempImage = styled.img`
+  width: 100%;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.49);
+`;
+
 export const Image = styled.img`
+  ${props => {
+    if (props.isLoading)
+      return css`
+        display: none;
+      `;
+  }}
   width: 100%;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.49);
 `;
