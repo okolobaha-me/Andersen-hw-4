@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const PopupStyled = styled.div`
   background-color: #ffcf56;
   padding: 15px 45px 15px 15px;
-  position: absolute;
+  position: fixed;
   bottom: 40px;
   right: 40px;
   border-radius: 10px;
