@@ -9,7 +9,7 @@ import {
   TempImage,
   Title,
 } from './AboutProduct.styled';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
 import { getProductDetails } from '../../JS/API';
 import { Loader } from '../../components/Loader/Loader';
@@ -53,6 +53,10 @@ export const AboutProduct = ({ addToCart, isLoggedIn }) => {
     addToCart(id, price, quantity);
   };
 
+  const turnOnRealPhoto = useCallback(() => {
+    setIsPhotoLoading(false);
+  }, []);
+
   return (
     <>
       {isLoading ? (
@@ -64,9 +68,7 @@ export const AboutProduct = ({ addToCart, isLoggedIn }) => {
             src={images[0]}
             alt={title}
             isLoading={isPhotoLoading}
-            onLoad={() => {
-              setIsPhotoLoading(false);
-            }}
+            onLoad={turnOnRealPhoto}
           />
           <DataWrapper>
             <Title>{title}</Title>
